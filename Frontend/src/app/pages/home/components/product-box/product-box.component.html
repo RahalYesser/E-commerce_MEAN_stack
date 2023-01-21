@@ -1,0 +1,58 @@
+
+<mat-card class="bg-white shadow rounded overflow-hidden group" >
+    <div [ngClass]="{ 'flex p-4': fullWidthMode }">   
+        <div class="relative">
+            <img src="../../../../../assets/shop-icon.png" alt="product 1" 
+                class="mb-1 mx-auto"
+                [ngClass]="{ 'h-[250px]': !fullWidthMode, 'h-[280px] max-w-xl': fullWidthMode }">
+            <div class="absolute inset-0 bg-black bg-opacity-40 flex items-center 
+            justify-center gap-2 opacity-0 group-hover:opacity-100 transition">
+                <a href="#"
+                    class="text-white text-lg w-9 h-8 rounded-full bg-primary flex items-center justify-center hover:bg-gray-800 transition"
+                    title="view product">
+                    <mat-icon>description</mat-icon>
+                </a>
+                <a href="#"
+                    class="text-white text-lg w-9 h-8 rounded-full bg-primary flex items-center justify-center hover:bg-gray-800 transition"
+                    title="add to wishlist">
+                    <mat-icon>favorite_border</mat-icon>
+                </a>
+            </div>
+         </div>
+
+    
+       <div class="flex flex-col justify-between" [ngClass]="{ 'px-8 flex flex-col w-full': fullWidthMode }">
+            <div class="px-3 pb-1 ">
+                <a href="#">
+                    <span class="uppercase truncate font-medium text-xl text-gray-800 hover:text-primary transition"
+                    [ngClass]="{ 'truncate' : !fullWidthMode }">
+                    HP 15-daxxx</span>
+                </a><br>
+                <span class="text-xs text-gray-500">PC</span>
+            </div> 
+
+            <div class="px-3 pb-1 ">
+                <span class="text-sm text-gray-400 line-through">{{'55.00' | currency}}</span><br>
+                <span class="text-2xl text-primary font-semibold">{{'45.00' | currency}}</span>
+            </div>
+            <div class="px-3" *ngIf="fullWidthMode">
+              
+                <h4>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Alias excepturi, error ipsam sint delectus asperiores optio, voluptas illum incidunt consectetur quo. Blanditiis similique veniam optio fugiat impedit veritatis alias esse!</h4> 
+              
+            </div>
+            <div class="px-3 pb-1">
+                <div class="text-xs text-gray-500"> Stock (150)</div>
+            </div>
+            <div>
+                <a href="#"
+                     class="block w-full py-1 text-center text-white bg-primary border border-primary rounded-b hover:bg-transparent hover:text-primary transition"
+                    [ngClass]="{ 'rounded': fullWidthMode }"
+                    >Add to cart
+                </a>
+            </div>
+        </div>
+        
+    </div>
+
+</mat-card>
+

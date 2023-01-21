@@ -1,0 +1,97 @@
+<style>
+  header{
+      font-family: poppins;
+      font-size: medium;
+  }
+</style>
+<header class=" py-2.5 shadow-sm bg-white fixed w-full top-0 z-50">
+  <div class="flex px-6 items-center justify-between ">
+      <a href="index.html">
+          <img src="../../../assets/myshop.png" alt="Logo" class="w-42"> 
+      </a>
+
+      <div class="w-full max-w-xl relative flex">
+        <span class="absolute left-4 top-2 text-lg text-primary">
+          <mat-icon>search</mat-icon>
+        </span>
+        <input type="text" name="search" id="search" 
+            class="w-full h-10 border border-primary border-r-0 pl-12 py-3 pr-3 rounded-l-md focus:outline-none"
+            placeholder="search">
+        <button
+            class="bg-primary text-white font-bold border border-primary  px-8 rounded-r-md hover:bg-transparent hover:text-primary  transition">Search</button>
+      </div>
+
+      <div class="flex items-center space-x-4">
+          <a href="#" class="text-center text-gray-700 hover:text-primary transition relative">
+              <div class="text-2xl">
+                <button mat-icon-button  >
+                  <mat-icon
+                    [matBadge]="2"
+                    matBadgeColor="warn"
+                    >favorite_border</mat-icon
+                  >
+                </button>
+              </div>
+              <div class="text-xs leading-3">Wishlist</div>
+           </a>
+          <a class="text-center text-gray-700 hover:text-primary transition relative">
+              <div class="text-2xl">
+                <button mat-icon-button [matMenuTriggerFor]="menu" >
+                  <mat-icon
+                     [matBadge]="2"
+                     matBadgeColor="warn"
+                  >shopping_cart</mat-icon>
+                </button>
+              </div>
+              <div class="text-xs leading-3">Cart</div>
+              
+          </a>
+          <mat-menu #menu="matMenu">
+            <div class="p-3 divide-y divide-solid">
+              <div class="pb-3 flex justify-between">
+                <span class="mr-16"> items</span>
+                <a routerLink="cart">View Cart</a>
+              </div>
+              <div  class="py-3">
+                <div
+                 
+                  class="flex justify-between font-light mb-2"
+                >
+                  
+                  <span class="font-bold not-italic"></span>
+                </div>
+              </div>
+              <div class="flex justify-between py-3 font-light">
+                Total:
+                <span class="font-bold not-italic">
+                    {{ '450' | currency }}
+                </span>
+              </div>
+              <div class="pt-3 flex justify-between">
+                <button
+                 
+                  class="bg-rose-600 text-white rounded-full w-9 h-9"
+                >
+                  <mat-icon>remove_shopping_cart</mat-icon>
+                </button>
+                <button
+                  routerLink="cart"
+                  class="bg-green-600 text-white rounded-full w-9 h-9"
+                >
+                  <mat-icon>shopping_cart_checkout</mat-icon>
+                </button>
+              </div>
+            </div>
+          </mat-menu>
+          <a href="#" class="text-center text-gray-700 hover:text-primary transition relative">
+              <div class="text-2xl">
+                <button mat-icon-button  >
+                  <mat-icon
+                  >account_circle</mat-icon>
+                </button>
+              </div>
+              <div class="text-xs leading-3">Account</div>
+          </a>
+      </div>
+  </div>
+</header>

@@ -1,0 +1,69 @@
+<app-navbar></app-navbar>
+
+<mat-drawer-container  [autosize]="true"
+class="min-h-full mx-auto border-x"
+>
+    <mat-drawer mode="side" opened class="p-6">
+            <!-- sidebar -->
+            <div class="bg-white px-4 pb-6 shadow rounded overflow-hidden ">
+                <div class="divide-y divide-gray-200 space-y-5">
+                    <div class="px-4">
+                        <h2 class="text-xl text-gray-800 mb-3 uppercase font-medium">Categories</h2>
+                        <app-categories (showCategory)="onShowCategory($event)"></app-categories>
+                        
+                    </div>
+                
+
+                </div>
+            </div>
+       
+    </mat-drawer>
+
+    <mat-drawer-content class="p-5">
+        <app-products-header 
+            (columnsCountChange)="onColumnsCountChange($event)"
+           >
+        </app-products-header>
+
+        <mat-grid-list
+            gutterSize="26"
+            [cols]="cols"
+            [rowHeight]="rowHeight"
+            >
+           <mat-grid-tile >
+            
+                <app-product-box [fullWidthMode]="cols === 1" class="w-full min-h-full"></app-product-box>
+            </mat-grid-tile><mat-grid-tile >
+            
+                <app-product-box [fullWidthMode]="cols === 1" class="w-full min-h-full"></app-product-box>
+            </mat-grid-tile>
+            <mat-grid-tile >
+            
+                <app-product-box [fullWidthMode]="cols === 1" class="w-full min-h-full"></app-product-box>
+            </mat-grid-tile>
+            <mat-grid-tile >
+            
+                <app-product-box [fullWidthMode]="cols === 1" class="w-full min-h-full"></app-product-box>
+            </mat-grid-tile><mat-grid-tile >
+            
+                <app-product-box [fullWidthMode]="cols === 1" class="w-full min-h-full"></app-product-box>
+            </mat-grid-tile><mat-grid-tile >
+            
+                <app-product-box [fullWidthMode]="cols === 1" class="w-full min-h-full"></app-product-box>
+            </mat-grid-tile><mat-grid-tile >
+            
+                <app-product-box [fullWidthMode]="cols === 1" class="w-full min-h-full"></app-product-box>
+            </mat-grid-tile><mat-grid-tile >
+            
+                <app-product-box [fullWidthMode]="cols === 1" class="w-full min-h-full"></app-product-box>
+            </mat-grid-tile>
+            
+            
+        </mat-grid-list>
+    </mat-drawer-content>
+</mat-drawer-container>
+
+<app-footer></app-footer>
+
+<app-copyright></app-copyright>
+
