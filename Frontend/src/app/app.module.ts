@@ -26,6 +26,7 @@ import { NavbarComponent } from './components/navbar/navbar.component';
 import { ProductBoxComponent } from './pages/home/components/product-box/product-box.component';
 import { CopyrightComponent } from './components/copyright/copyright.component';
 import { FooterComponent } from './components/footer/footer.component';
+import { CartComponent } from './pages/cart/cart.component';
 
 @NgModule({
   declarations: [
@@ -37,7 +38,8 @@ import { FooterComponent } from './components/footer/footer.component';
     NavbarComponent,
     ProductBoxComponent,
     CopyrightComponent,
-    FooterComponent
+    FooterComponent,
+    CartComponent
   ],
   imports: [
     BrowserModule,

@@ -1,22 +1,30 @@
 <mat-expansion-panel *ngIf="categories">
     <mat-expansion-panel-header>
-      <mat-panel-title> CATEGORIES </mat-panel-title>
+      <mat-panel-title >
+        <mat-icon >menu</mat-icon>
+        &ensp;  &ensp; 
+        <div class="font-sans text-center">ALL CATEGORIES</div> 
+      </mat-panel-title>
     </mat-expansion-panel-header>
     <mat-selection-list [multiple]="false">
-      <mat-list-option *ngFor="let category of categories" [value]="category">
-        <button (click)="onShowCategory(category)">{{ category }}</button>
+      <mat-list-option *ngFor="let category of categories" [value]="category" (click)="onShowCategory(category)">
+        
+        <button class="font-mono ">{{category}}</button>
+      
       </mat-list-option>
+      
     </mat-selection-list>
-  </mat-expansion-panel>
+  </mat-expansion-panel> 
 
-<div class="space-y-4 ">
+<!-- <div class="space-y-4 ">
     <div class="flex items-center" *ngFor="let category of categories">
-        <input type="radio" name="cat-1" id="cat-1"
+        <input type="radio" name="cat-1" id="cat-1" [value]="category" 
             cl ass="text-primary focus:ring-0 rounded-sm cursor-pointer">
         <label for="cat-1" class="text-gray-600 ml-3 cusror-pointer">{{ category }}</label>
         <div class="ml-auto pl-12 text-gray-600 text-sm">(10)</div>
+
     </div>
             
           
             
-</div>
+</div> -->
