@@ -1,16 +1,14 @@
+
 <app-navbar></app-navbar>
 
-<mat-drawer-container  [autosize]="true"
-class="min-h-full mx-auto border-x"
+<mat-drawer-container [autosize]="true"
+class=" mx-auto border-x"
 >
     <mat-drawer mode="side" opened class="p-6">
-            <!-- sidebar -->
-           
-                        <app-categories (showCategory)="onShowCategory($event)"></app-categories>
-       
+         <app-categories (showCategory)="onShowCategory($event)"></app-categories>
     </mat-drawer>
 
-    <mat-drawer-content class="p-5">
+    <mat-drawer-content class="p-8">
         <app-products-header 
             (columnsCountChange)="onColumnsCountChange($event)"
            >
@@ -23,44 +21,21 @@ class="min-h-full mx-auto border-x"
             >
             <mat-grid-tile 
                 class="transition bg-white px-4 pb-6 shadow-md rounded overflow-hidden 
-                hover:shadow-[0_20px_50px_-20px_RGBA(253,61,87,1)] hover:translate-y-1 hover:scale-105" >
-                 <app-product-box [fullWidthMode]="cols === 1" class="w-full min-h-full"></app-product-box>
+                hover:shadow-[0_20px_60px_-20px_RGBA(253,61,87,1)] hover:translate-y-1 hover:scale-105" >
+                 <app-product-box 
+                    [fullWidthMode]="cols === 1" 
+                    class="w-full min-h-full"
+                    (addToCart)="onAddToCart($event)"
+                 >
+                </app-product-box>
              </mat-grid-tile>
-            <mat-grid-tile 
-               class="transition bg-white px-4 pb-6 shadow-md rounded overflow-hidden 
-               hover:shadow-[0_20px_50px_-20px_RGBA(253,61,87,1)] hover:translate-y-1 hover:scale-105" >
-                <app-product-box [fullWidthMode]="cols === 1" class="w-full min-h-full"></app-product-box>
-            </mat-grid-tile>
-            <mat-grid-tile 
-               class="transition bg-white px-4 pb-6 shadow-md rounded overflow-hidden 
-               hover:shadow-[0_20px_50px_-20px_RGBA(253,61,87,1)] hover:translate-y-1 hover:scale-105" >
-                <app-product-box [fullWidthMode]="cols === 1" class="w-full min-h-full"></app-product-box>
-            </mat-grid-tile>
-            <mat-grid-tile 
-               class="transition bg-white px-4 pb-6 shadow-md rounded overflow-hidden 
-               hover:shadow-[0_20px_50px_-20px_RGBA(253,61,87,1)] hover:translate-y-1 hover:scale-105" >
-                <app-product-box [fullWidthMode]="cols === 1" class="w-full min-h-full"></app-product-box>
-            </mat-grid-tile>
-            <mat-grid-tile 
-               class="transition bg-white px-4 pb-6 shadow-md rounded overflow-hidden 
-               hover:shadow-[0_20px_50px_-20px_RGBA(253,61,87,1)] hover:translate-y-1 hover:scale-105" >
-                <app-product-box [fullWidthMode]="cols === 1" class="w-full min-h-full"></app-product-box>
-            </mat-grid-tile>
-            <mat-grid-tile 
-               class="transition bg-white px-4 pb-6 shadow-md rounded overflow-hidden 
-               hover:shadow-[0_20px_50px_-20px_RGBA(253,61,87,1)] hover:translate-y-1 hover:scale-105" >
-                <app-product-box [fullWidthMode]="cols === 1" class="w-full min-h-full"></app-product-box>
-            </mat-grid-tile>
-            <mat-grid-tile 
-               class="transition bg-white px-4 pb-6 shadow-md rounded overflow-hidden 
-               hover:shadow-[0_20px_50px_-20px_RGBA(253,61,87,1)] hover:translate-y-1 hover:scale-105" >
-                <app-product-box [fullWidthMode]="cols === 1" class="w-full min-h-full"></app-product-box>
-            </mat-grid-tile>
-            
+                
         </mat-grid-list>
     </mat-drawer-content>
 </mat-drawer-container>
 
+<app-footer></app-footer>
+<app-copyright></app-copyright>
 
 
 

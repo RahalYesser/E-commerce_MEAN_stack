@@ -27,6 +27,7 @@ import { ProductBoxComponent } from './pages/home/components/product-box/product
 import { CopyrightComponent } from './components/copyright/copyright.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { CartComponent } from './pages/cart/cart.component';
+import { CartService } from './services/cart.service';
 
 @NgModule({
   declarations: [
@@ -59,7 +60,7 @@ import { CartComponent } from './pages/cart/cart.component';
     MatBadgeModule,
     MatSnackBarModule,
   ],
-  providers: [],
+  providers: [CartService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
