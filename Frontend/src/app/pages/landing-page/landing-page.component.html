@@ -1,0 +1,86 @@
+<app-navbar></app-navbar>
+
+<app-banner></app-banner>
+
+<app-features></app-features>
+
+    <!-- categories -->
+    <div class="container py-16">
+        <h2 class="text-2xl font-medium text-gray-800 uppercase mb-6">shop by category</h2>
+        <div class="grid grid-cols-3 gap-3">
+            <div class="relative rounded-sm overflow-hidden group">
+                <img src="../../../assets/smartphones.jpg" alt="category 1" class="w-full">
+                <a href="#"
+                    class="absolute inset-0 bg-black bg-opacity-40 flex items-center justify-center text-2xl text-white font-roboto font-medium group-hover:bg-opacity-60 transition uppercase">smartphones</a>
+            </div>
+            <div class="relative rounded-sm overflow-hidden group">
+                <img src="../../../assets/laptop.jpg" alt="category 1" class="w-full">
+                <a href="#"
+                    class="absolute inset-0 bg-black bg-opacity-40 flex items-center justify-center text-2xl text-white font-roboto font-medium group-hover:bg-opacity-60 transition uppercase">laptops</a>
+            </div>
+            <div class="relative rounded-sm overflow-hidden group">
+                <img src="../../../assets/tablets.jpg" alt="category 1" class="w-full">
+                <a href="#"
+                    class="absolute inset-0 bg-black bg-opacity-40 flex items-center justify-center text-2xl text-white font-roboto font-medium group-hover:bg-opacity-60 transition uppercase">tablets
+                </a>
+            </div>
+            <div class="relative rounded-sm overflow-hidden group">
+                <img src="../../../assets/gaming.jpg" alt="category 1" class="w-full">
+                <a href="#"
+                    class="absolute inset-0 bg-black bg-opacity-40 flex items-center justify-center text-2xl text-white font-roboto font-medium group-hover:bg-opacity-60 transition uppercase">gaming</a>
+            </div>
+            <div class="relative rounded-sm overflow-hidden group">
+                <img src="../../../assets/smart_tv.jpg" alt="category 1" class="w-full">
+                <a href="#"
+                    class="absolute inset-0 bg-black bg-opacity-40 flex items-center justify-center text-2xl text-white font-roboto font-medium group-hover:bg-opacity-60 transition uppercase">SMART TV</a>
+            </div>
+            <div class="relative rounded-sm overflow-hidden group">
+                <img src="../../../assets/accessories.jpg" alt="category 1" class="w-full">
+                <a href="#"
+                    class="absolute inset-0 bg-black bg-opacity-40 flex items-center justify-center text-2xl text-white font-roboto font-medium group-hover:bg-opacity-60 transition uppercase">Accessories</a>
+            </div>
+        </div>
+    </div>
+    <!-- ./categories -->
+
+
+    <!-- product -->
+    <div class="container pb-16">
+        <h2 class="text-2xl font-medium text-gray-800 uppercase mb-6">recomended for you</h2>
+      
+               
+            <mat-grid-list
+            gutterSize="26"
+            [cols]="cols"
+            [rowHeight]="412"
+            >
+            <mat-grid-tile 
+                class="transition bg-white px-4 pb-6 shadow-md rounded overflow-hidden 
+                hover:shadow-[0_20px_60px_-20px_RGBA(253,61,87,1)] hover:translate-y-1 hover:scale-105" >
+                 <app-product-box 
+                    [fullWidthMode]="cols === 1" 
+                    class="w-full min-h-full"
+                    
+                 >
+                </app-product-box>
+             </mat-grid-tile>
+             <mat-grid-tile 
+                class="transition bg-white px-4 pb-6 shadow-md rounded overflow-hidden 
+                hover:shadow-[0_20px_60px_-20px_RGBA(253,61,87,1)] hover:translate-y-1 hover:scale-105" >
+                 <app-product-box 
+                    [fullWidthMode]="cols === 1" 
+                    class="w-full min-h-full"
+                    
+                 >
+                </app-product-box>
+             </mat-grid-tile>
+                
+        </mat-grid-list>
+
+            
+        
+    </div>
+    <!-- ./product -->
+<app-footer></app-footer>
+
+<app-copyright></app-copyright>

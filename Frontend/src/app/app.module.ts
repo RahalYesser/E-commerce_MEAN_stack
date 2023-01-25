@@ -28,6 +28,9 @@ import { CopyrightComponent } from './components/copyright/copyright.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { CartComponent } from './pages/cart/cart.component';
 import { CartService } from './services/cart.service';
+import { LandingPageComponent } from './pages/landing-page/landing-page.component';
+import { FeaturesComponent } from './pages/landing-page/components/features/features.component';
+import { BannerComponent } from './pages/landing-page/components/banner/banner.component';
 
 @NgModule({
   declarations: [
@@ -40,7 +43,10 @@ import { CartService } from './services/cart.service';
     ProductBoxComponent,
     CopyrightComponent,
     FooterComponent,
-    CartComponent
+    CartComponent,
+    LandingPageComponent,
+    FeaturesComponent,
+    BannerComponent
   ],
   imports: [
     BrowserModule,
