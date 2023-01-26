@@ -31,6 +31,7 @@ import { CartService } from './services/cart.service';
 import { LandingPageComponent } from './pages/landing-page/landing-page.component';
 import { FeaturesComponent } from './pages/landing-page/components/features/features.component';
 import { BannerComponent } from './pages/landing-page/components/banner/banner.component';
+import { LoginComponent } from './pages/authentification/login/login.component';
 
 @NgModule({
   declarations: [
@@ -46,7 +47,8 @@ import { BannerComponent } from './pages/landing-page/components/banner/banner.c
     CartComponent,
     LandingPageComponent,
     FeaturesComponent,
-    BannerComponent
+    BannerComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,
