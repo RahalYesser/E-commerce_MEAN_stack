@@ -3,10 +3,9 @@ export interface Cart {
 }
   
 export interface CartItem {
-    id: number;
+    id: string;
     product_image: string;
     name: string;
     price: number;
     quantity: number;
-    
 }

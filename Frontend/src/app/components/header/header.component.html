@@ -5,7 +5,7 @@
           <img src="../../../assets/myshop.png" alt="Logo" class="w-42"> 
       </a>
 
-      <div class="w-full max-w-xl relative flex">
+      <!-- <div class="w-full max-w-xl relative flex">
         <span class="absolute left-4 top-2 text-lg text-primary">
           <mat-icon>search</mat-icon>
         </span>
@@ -14,10 +14,11 @@
             placeholder="search">
         <button
             class="bg-primary text-white font-bold border border-primary  px-8 rounded-r-md hover:bg-transparent hover:text-primary  transition">Search</button>
-      </div>
+      </div> -->
 
       <div class="flex items-center space-x-4">
-          <a href="#" class="text-center text-gray-700 hover:text-primary transition relative">
+          <div>
+            <a href="" class="text-center text-gray-700 hover:text-primary transition relative">
               <div class="text-2xl">
                 <button mat-icon-button  >
                   <mat-icon
@@ -29,6 +30,8 @@
               </div>
               <div class="text-xs leading-3">Wishlist</div>
            </a>
+          </div>
+          <div>
           <a class="text-center text-gray-700 hover:text-primary transition relative">
               <div class="text-2xl">
                 <button mat-icon-button [matMenuTriggerFor]="menu" >
@@ -43,25 +46,26 @@
               <div class="text-xs leading-3">Cart</div>
               
           </a>
+          </div>
           <mat-menu #menu="matMenu">
-            <div class="p-3 divide-y divide-solid">
+            <div class="p-5 divide-y divide-solid" width="300">
               <div class="pb-3 flex justify-between">
-                <span class="mr-16">{{itemsQuantity}} items</span>
-                <a routerLink="cart">View Cart</a>
+                <span class="mr-10">{{itemsQuantity}} items</span>
+                <span>Price</span>
               </div>
               <div *ngIf="cart.items.length" class="py-3">
                 <div
                   *ngFor="let item of cart.items"
                   class="flex justify-between font-light mb-2"
                 >
-                  <span class="uppercase text-xl">{{ item.name }}</span>x {{ item.quantity }}
-                  <span class="font-bold not-italic">{{item.price | currency}}</span>
+                  <div class="flex justify-start"><span class="uppercase text-xl">{{ item.name }} <h2 class="text-primary">x {{ item.quantity }}</h2> </span> </div>
+                  <div class="flex justify-end"><span class="font-bold not-italic">{{item.price}} DT</span></div>
                 </div>  
               </div>
               <div class="flex justify-between py-3 font-light">
                 Total:
                 <span class="font-bold not-italic">
-                    {{ getTotal(cart.items) | currency }}
+                    {{ getTotal(cart.items) }} DT
                 </span>
               </div>
               <div class="pt-3 flex justify-between">
@@ -72,7 +76,7 @@
                   <mat-icon>remove_shopping_cart</mat-icon>
                 </button>
                 <button
-                  routerLink="cart"
+                  routerLink="/cart"
                   class="bg-green-600 text-white rounded-full w-9 h-9"
                 >
                   <mat-icon>shopping_cart_checkout</mat-icon>
@@ -80,14 +84,17 @@
               </div>
             </div>
           </mat-menu>
-          <a href="#" class="text-center text-gray-700 hover:text-primary transition relative">
+          <a href="home" class="text-center text-gray-700 hover:text-primary transition relative">
               <div class="text-2xl">
                 <button mat-icon-button  >
                   <mat-icon
                   >account_circle</mat-icon>
                 </button>
               </div>
-              <div class="text-xs leading-3">Account</div>
+              <div *ngIf="this.authService.isLoggedIn" class="text-xs leading-3">
+                {{this.authService.username}}
+              </div>
+              <div *ngIf="!this.authService.isLoggedIn" class="text-xs leading-3">Account</div>
           </a>
       </div>
   </div>

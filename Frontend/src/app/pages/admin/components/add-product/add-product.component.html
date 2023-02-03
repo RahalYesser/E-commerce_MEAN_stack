@@ -1,0 +1,112 @@
+<app-sidebar></app-sidebar>
+<!-- Create Post -->
+<div class="pl-10 sm:ml-64 mr-10 items-center">
+    <div class="pt-3">
+      <div class="w-full mt-6 overflow-hidden bg-white rounded-lg lg:max-w-4xl">
+        <div class="mb-8">
+          <h1 class="font-serif text-3xl font-bold underline decoration-gray-400">
+            Add Product
+          </h1>
+        </div>
+
+        <div class="w-full px-6 py-4 bg-white rounded shadow-md ring-1 ring-gray-900/10">
+          <form #addForm="ngForm" (ngSubmit)="onAddProduct(addForm)" class="py-3">
+            <div class="mb-4">
+              <label class="block text-sm font-bold text-gray-700" for="PCID">
+              PCID : <span class="text-red-600">*</span>
+              </label>
+              <input ngModel
+              class="block w-full border border-gray-300 px-4 py-3 text-gray-600 text-sm rounded focus:ring-0 focus:border-primary placeholder-gray-400"
+              type="text" name="pcid" placeholder="PCID : Example (9QG24E, A8J69E...)" />
+            </div>
+            <div class="mb-4">
+              <label class="block text-sm font-bold text-gray-700" for="Name">
+                Name : <span class="text-red-600">*</span>
+              </label>
+              <input ngModel
+              class="block w-full border border-gray-300 px-4 py-3 text-gray-600 text-sm rounded focus:ring-0 focus:border-primary placeholder-gray-400"
+              type="text" name="name" placeholder="Product name" />
+            </div>
+            <div class="mb-4">
+              <label class="block text-sm font-bold text-gray-700" for="ImageUrl">
+                ImageUrl : <span class="text-red-600">*</span>
+              </label>
+              <input ngModel
+              class="block w-full border border-gray-300 px-4 py-3 text-gray-600 text-sm rounded focus:ring-0 focus:border-primary placeholder-gray-400"
+              type="text" name="img" placeholder="Search for imageUrl on Google" />
+            </div>
+            <div class="mb-4">
+              <label class="block text-sm font-bold text-gray-700" for="Categories">
+                Categories : <span class="text-red-600">*</span>
+              </label>
+              <input ngModel
+              class="block w-full border border-gray-300 px-4 py-3 text-gray-600 text-sm rounded focus:ring-0 focus:border-primary placeholder-gray-400"
+              type="text" name="categories" placeholder="Categories : (PC, SMARTPHONE, TV, TABLETS, GAMING, ACCESSORIES)" />
+            </div>
+            <div class="mb-4">
+              <label class="block text-sm font-bold text-gray-700" for="Categories">
+                Price : <span class="text-red-600">*</span>
+              </label>
+              <input ngModel
+              class="block w-full border border-gray-300 px-4 py-3 text-gray-600 text-sm rounded focus:ring-0 focus:border-primary placeholder-gray-400"
+              type="text" name="price" placeholder="Price DT" />
+            </div>
+            <div class="mb-4">
+              <label class="block text-sm font-bold text-gray-700" for="Stock">
+                Stock : <span class="text-red-600">*</span>
+              </label>
+              <input ngModel
+              class="block w-full border border-gray-300 px-4 py-3 text-gray-600 text-sm rounded focus:ring-0 focus:border-primary placeholder-gray-400"
+              type="text" name="stock" placeholder="Stock (Number)" />
+            </div>
+            <div class="mb-4">
+              <label class="block text-sm font-bold text-gray-700" for="Color">
+              Color :
+              </label>
+              <input ngModel
+              class="block w-full border border-gray-300 px-4 py-3 text-gray-600 text-sm rounded focus:ring-0 focus:border-primary placeholder-gray-400"
+              type="text" name="color" placeholder="Color (Green, Silver, Black...)" />
+            </div>
+            <div class="mb-4">
+              <label class="block text-sm font-bold text-gray-700" for="Size">
+                Size :
+              </label>
+              <input ngModel
+              class="block w-full border border-gray-300 px-4 py-3 text-gray-600 text-sm rounded focus:ring-0 focus:border-primary placeholder-gray-400"
+              type="text" name="size" placeholder="Size (String) " />
+            </div>
+
+            <!-- Description -->
+            <div class="mb-4">
+              <label class="block text-sm font-bold text-gray-700" for="description">
+                Description : <span class="text-red-600">*</span>
+              </label>
+              <textarea name="desc" ngModel
+                class="block w-full border border-gray-300 px-4 py-3 text-gray-600 text-sm rounded focus:ring-0 focus:border-primary placeholder-gray-400"
+                rows="4" placeholder="Description"></textarea>
+            </div>
+
+            <div class="flex items-center justify-between mt-4 gap-x-2">
+              <div class="flex justify-start">
+                <button type="submit" id="add-product-form"
+                  class="px-6 py-2 text-sm font-semibold rounded-md shadow-md text-sky-100 bg-sky-500 hover:bg-sky-700 focus:outline-none focus:border-gray-900 focus:ring ring-gray-300">
+                  Add
+                </button>
+                &nbsp; &nbsp; &nbsp; 
+                <button type="button" (click)="onInitForm(addForm)"
+                 class="px-6 py-2 text-sm font-semibold text-gray-100 bg-red-600 rounded-md shadow-md hover:bg-red-400 focus:outline-none focus:border-gray-900 focus:ring ring-gray-300">
+                 Reset form
+                </button>
+            </div>
+              <div class="flex justify-end">
+                <button routerLink="/admin/products-list"
+                class="px-4 py-2 rounded-md bg-green-700 text-white hover:bg-green-500">
+                Products List</button>
+              </div>
+            </div>
+            <div class="text-red-600 pt-10">* <span class="text-gray-800 font-bold">Required Field</span></div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>

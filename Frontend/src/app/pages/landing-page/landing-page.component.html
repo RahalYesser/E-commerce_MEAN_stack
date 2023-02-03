@@ -1,3 +1,5 @@
+<app-header [cart]="cart"></app-header>
+
 <app-navbar></app-navbar>
 
 <app-banner></app-banner>
@@ -46,35 +48,26 @@
 
     <!-- product -->
     <div class="container pb-16">
-        <h2 class="text-2xl font-medium text-gray-800 uppercase mb-6">recomended for you</h2>
-      
-               
+        <h2 class="text-2xl font-medium text-gray-800 uppercase mb-6">recomended for you</h2>    
             <mat-grid-list
+            *ngIf="products && products.length"
+            app-product-box
             gutterSize="26"
             [cols]="cols"
             [rowHeight]="412"
             >
-            <mat-grid-tile 
+            <mat-grid-tile *ngFor="let product of products"
                 class="transition bg-white px-4 pb-6 shadow-md rounded overflow-hidden 
                 hover:shadow-[0_20px_60px_-20px_RGBA(253,61,87,1)] hover:translate-y-1 hover:scale-105" >
                  <app-product-box 
+                 [product]="product"
                     [fullWidthMode]="cols === 1" 
                     class="w-full min-h-full"
-                    
+                    (addToCart)="onAddToCart($event)"
                  >
                 </app-product-box>
              </mat-grid-tile>
-             <mat-grid-tile 
-                class="transition bg-white px-4 pb-6 shadow-md rounded overflow-hidden 
-                hover:shadow-[0_20px_60px_-20px_RGBA(253,61,87,1)] hover:translate-y-1 hover:scale-105" >
-                 <app-product-box 
-                    [fullWidthMode]="cols === 1" 
-                    class="w-full min-h-full"
-                    
-                 >
-                </app-product-box>
-             </mat-grid-tile>
-                
+            
         </mat-grid-list>
 
             

@@ -1,5 +1,6 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { Product } from 'src/app/models/product.model';
+import { ProductService } from 'src/app/services/product.service';
 
 @Component({
   selector: 'app-product-box',
@@ -7,20 +8,16 @@ import { Product } from 'src/app/models/product.model';
   styles: [
   ]
 })
-export class ProductBoxComponent {
+export class ProductBoxComponent{
+
+  public products : Product[] = []
+
   @Input() fullWidthMode = false;
-  @Input() product: Product ={
-    id: 1,
-    sku: 6516484653,
-    title: 'hp',
-    price: 150,
-    category: 'PC',
-    description: 'zaefsdfazef a efazef azef azef azef',
-    image: 'https://via.placeholder.com/150',
-  };
+  @Input() product: Product | undefined
   @Output() addToCart = new EventEmitter();
 
   constructor() {}
+
 
   onAddToCart(): void {
     this.addToCart.emit(this.product);

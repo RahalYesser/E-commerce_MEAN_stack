@@ -1,3 +1,6 @@
+<app-header [cart]="cart"></app-header>
+<app-navbar></app-navbar>
+
 <mat-card *ngIf="cart.items.length" class="m-12 max-w-7xl">
     <table mat-table [dataSource]="dataSource">
       <ng-container matColumnDef="product" >

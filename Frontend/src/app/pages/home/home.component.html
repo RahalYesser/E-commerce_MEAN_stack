@@ -1,3 +1,4 @@
+<app-header [cart]="cart"></app-header>
 
 <app-navbar></app-navbar>
 
@@ -6,6 +7,7 @@ class=" mx-auto border-x"
 >
     <mat-drawer mode="side" opened class="p-6">
          <app-categories (showCategory)="onShowCategory($event)"></app-categories>
+
     </mat-drawer>
 
     <mat-drawer-content class="p-8">
@@ -14,15 +16,18 @@ class=" mx-auto border-x"
            >
         </app-products-header>
 
-        <mat-grid-list
+
+        <mat-grid-list *ngIf="products && products.length"
+            app-product-box
             gutterSize="26"
             [cols]="cols"
             [rowHeight]="rowHeight"
             >
-            <mat-grid-tile 
+            <mat-grid-tile *ngFor="let product of products"
                 class="transition bg-white px-4 pb-6 shadow-md rounded overflow-hidden 
                 hover:shadow-[0_20px_60px_-20px_RGBA(253,61,87,1)] hover:translate-y-1 hover:scale-105" >
                  <app-product-box 
+                    [product]="product"
                     [fullWidthMode]="cols === 1" 
                     class="w-full min-h-full"
                     (addToCart)="onAddToCart($event)"

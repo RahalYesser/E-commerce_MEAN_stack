@@ -1,4 +1,4 @@
-<!-- navbar -->
+<!-- 
 <nav class="bg-gray-800">
         <div class="container flex">
             <div class="px-8 py-4 bg-primary flex items-center cursor-pointer relative group">
@@ -7,7 +7,7 @@
                 </span>
                 <span class="capitalize ml-2 text-white">All Categories</span>
 
-                <!-- dropdown -->
+                 dropdown 
                 <div
                     class="absolute w-full left-0 top-full bg-white shadow-md py-3 divide-y divide-gray-300 divide-dashed opacity-0 group-hover:opacity-100 transition duration-300 invisible group-hover:visible">
                     <a href="#" class="flex items-center px-6 py-3 hover:bg-gray-100 transition">
@@ -39,39 +39,40 @@
 
             <div class="flex items-center justify-between flex-grow pl-12">
                 <div class="flex items-center space-x-6 capitalize">
-                    <a href="../index.html" class="text-gray-200 hover:text-white transition">Home</a>
-                    <a href="auth" class="text-gray-200 hover:text-white transition">Shop</a>
+                    <a href="" class="text-gray-200 hover:text-white transition">Home</a>
+                    <a href="home" class="text-gray-200 hover:text-white transition">Shop</a>
                     <a href="#about" class="text-gray-200 hover:text-white transition">About us</a>
-                    <a href="#" class="text-gray-200 hover:text-white transition">Contact us</a>
+                    <a href="" class="text-gray-200 hover:text-white transition">Contact us</a>
                 </div>
-                <a href="auth" >
+                <a href="" >
                     <button class="text-gray-200 hover:text-white transition">
                         Login/Register</button>
                 </a>
             </div>
         </div>
-</nav>
-    <!-- ./navbar -->
+</nav>-->
 
+<app-navbar> </app-navbar>
     <!-- login -->
 <div class="contain py-16">
         <div class="max-w-lg mx-auto shadow px-6 py-7 rounded overflow-hidden">
             
             <h2 class="text-gray-600 text-center mb-6 text-sm uppercase">Login</h2>
             
-            <form action="#" method="post" autocomplete="off">
+            <form class="form-signin" [formGroup]="signinForm">
                 <div class="space-y-2">
                     <div>
                         <label for="email" class="text-gray-600 mb-2 block">Email address</label>
-                        <input type="email" name="email" id="email"
+                        <input type="email" name="email" id="email" required formControlName="email"
+
                             class="block w-full border border-gray-300 px-4 py-3 text-gray-600 text-sm rounded focus:ring-0 focus:border-primary placeholder-gray-400"
                             placeholder="youremail.@domain.com">
                     </div>
                     <div>
                         <label for="password" class="text-gray-600 mb-2 block">Password</label>
-                        <input type="password" name="password" id="password"
+                        <input type="password" name="password" required formControlName="password"
                             class="block w-full border border-gray-300 px-4 py-3 text-gray-600 text-sm rounded focus:ring-0 focus:border-primary placeholder-gray-400"
-                            placeholder="*******">
+                            placeholder="*******"> 
                     </div>
                 </div>
                 <div class="flex items-center justify-between mt-6">
@@ -80,10 +81,10 @@
                             class="text-primary focus:ring-0 rounded-sm cursor-pointer">
                         <label for="remember" class="text-gray-600 ml-3 cursor-pointer">Remember me</label>
                     </div>
-                    <a href="#" class="text-primary">Forgot password</a>
+                    <a href="" class="text-primary">Forgot password</a>
                 </div>
                 <div class="mt-4">
-                    <button type="submit"
+                    <button type="submit" (click)="loginUser()"
                         class="block w-full py-2 text-center text-white bg-primary border border-primary rounded hover:bg-transparent hover:text-primary transition uppercase font-roboto font-medium">Login</button>
                 </div>
             </form>
@@ -137,7 +138,7 @@
            
             <!-- ./login with -->
 
-            <p class="mt-4 text-center text-gray-600">Don't have account? <a href="register.html"
+            <p class="mt-4 text-center text-gray-600">Don't have account? <a href="register"
                     class="text-primary">Register now</a>
             </p>
         </div>

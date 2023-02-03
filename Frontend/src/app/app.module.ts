@@ -33,6 +33,20 @@ import { FeaturesComponent } from './pages/landing-page/components/features/feat
 import { BannerComponent } from './pages/landing-page/components/banner/banner.component';
 import { LoginComponent } from './pages/authentification/login/login.component';
 
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { AuthInterceptor } from './services/auth/authconfig.interceptor';
+import { ReactiveFormsModule, FormsModule } from '@angular/forms';
+import { RegisterComponent } from './pages/authentification/register/register.component';
+
+import { ToastrModule } from 'ngx-toastr';
+import { AdminComponent } from './pages/admin/admin.component';
+import { SidebarComponent } from './pages/admin/components/sidebar/sidebar.component';
+import { ProductsComponent } from './pages/admin/components/products/products.component';
+import { AddProductComponent } from './pages/admin/components/add-product/add-product.component';
+import { EditProductComponent } from './pages/admin/components/edit-product/edit-product.component';
+import { UsersListComponent } from './pages/admin/components/users-list/users-list.component';
+
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -48,12 +62,22 @@ import { LoginComponent } from './pages/authentification/login/login.component';
     LandingPageComponent,
     FeaturesComponent,
     BannerComponent,
-    LoginComponent
+    LoginComponent,
+    RegisterComponent,
+    AdminComponent,
+    SidebarComponent,
+    ProductsComponent,
+    AddProductComponent,
+    EditProductComponent,
+    UsersListComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
+    HttpClientModule,
+    ReactiveFormsModule,
+    FormsModule,
     MatSidenavModule,
     MatGridListModule,
     MatMenuModule,
@@ -67,8 +91,17 @@ import { LoginComponent } from './pages/authentification/login/login.component';
     MatTableModule,
     MatBadgeModule,
     MatSnackBarModule,
+    ToastrModule.forRoot(),
+
   ],
-  providers: [CartService],
+  providers: [
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: AuthInterceptor,
+      multi: true,
+    },
+    CartService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

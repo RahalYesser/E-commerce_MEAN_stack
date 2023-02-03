@@ -1,9 +1,14 @@
 export interface Product {
-    id: number;
-    sku: number;
-    title: string;
+    _id: string;
+    pcid: string;
+    name: string;
+    color: string;
+    size: string;
     price: number;
-    category: string;
-    description: string;
-    image: string;
+    categories: string;
+    desc: string;
+    img: string;
+    stock: number;
+    createdAt: Date;
+    updatedAt: Date;
 }
