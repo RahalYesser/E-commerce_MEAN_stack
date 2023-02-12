@@ -1,11 +1,12 @@
 <!-- Index Post -->
-<app-sidebar></app-sidebar>
-<div class="pl-10 sm:ml-64 mr-10">
-    <div class="mb-4 pt-10">
-      <h1 class="font-serif text-3xl font-bold underline decoration-gray-400"> Products list</h1>
+<app-sidebar [select]="3"></app-sidebar>
+<div class="pl-10 sm:ml-64 mr-10 pb-10">
+    <div class="mb-4 pt-4">
+      <h1 class="font-serif text-3xl font-bold underline decoration-gray-400">Products list</h1>
       <div class="flex justify-end">
         <button routerLink="/admin/add-product"
-        class="px-4 py-2 rounded-md bg-green-700 text-white hover:bg-green-600 ">
+        class="bg-primary border border-primary text-white px-4 py-2 font-medium rounded uppercase flex items-center gap-2 hover:bg-transparent hover:text-primary transition"
+        >
         Add Product</button>
       </div>
     </div>
@@ -33,16 +34,14 @@
                 <th
                   class="px-6 py-3 text-xs font-medium leading-4 tracking-wider text-left text-gray-500 uppercase border-b border-gray-200 bg-gray-50">
                   Created_At</th>
-                <!-- <th
-                  class="px-6 py-3 text-xs font-medium leading-4 tracking-wider text-left text-gray-500 uppercase border-b border-gray-200 bg-gray-50">
-                  Updated_At</th> -->
+               
                 <th class="px-6 py-3 text-sm text-left text-gray-500 border-b border-gray-200 bg-gray-50" colspan="3">
                   Action</th>
               </tr>
             </thead>
   
-            <tbody class="bg-white" *ngFor="let product of products">
-              <tr>
+            <tbody class="even:bg-white odd:bg-gray-50" *ngFor="let product of products">
+              <tr >
                 <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200">
                   <div class="flex items-center">
                     {{product.pcid}}
@@ -73,10 +72,6 @@
                   <span>{{product.createdAt}}</span>
                 </td>
 
-                <!-- <td class="px-6 py-4 text-sm leading-5 text-gray-500 whitespace-no-wrap border-b border-gray-200">
-                  <span>{{product.updatedAt}}</span>
-                </td> -->
-
   
                 <td class="text-sm font-medium leading-5 text-center whitespace-no-wrap border-b border-gray-200 ">
                   <a routerLink="/admin/edit-product/{{product._id}}" 
@@ -89,7 +84,7 @@
                   </a>
   
                 <td class="text-sm font-medium leading-5 text-center whitespace-no-wrap border-b border-gray-200 ">
-                  <a href="#" class="text-gray-600 hover:text-gray-900">
+                  <a routerLink="/admin/product-details/{{product._id}}" class="text-gray-600 hover:text-gray-900">
                     <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" fill="none" viewBox="0 0 24 24"
                       stroke="currentColor">
                       <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"

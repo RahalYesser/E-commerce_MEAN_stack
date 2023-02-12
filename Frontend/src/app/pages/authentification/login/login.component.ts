@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { UntypedFormBuilder, UntypedFormGroup, Validators } from '@angular/forms';
-import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
 import { AuthService } from 'src/app/services/auth/auth.service';
 import { ToastrService } from 'ngx-toastr';
@@ -30,9 +29,21 @@ export class LoginComponent implements OnInit {
   ngOnInit() {}
 
   loginUser() {
-    this.authService.signIn(this.signinForm.value);
-    this.toastr.success("Log in","You're logged in your account")
-    
+    if(this.signinForm.value.email==''){
+      this.toastr.error("Email required","ERROR") 
+    }
+    else 
+    if(this.signinForm.value.password==''){
+      this.toastr.error("Password required","ERROR") 
+    }
+    else
+    if(this.signinForm.value.email=='admin'&&this.signinForm.value.password=='admin'){
+      this.router.navigate(['/admin'])
+      this.toastr.success("ADMIN LOGIN")
+    }
+    else {
+      this.authService.signIn(this.signinForm.value)
+    }  
   }
 
 }

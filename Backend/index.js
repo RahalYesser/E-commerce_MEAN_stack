@@ -14,6 +14,8 @@ const UserRoutes = require('./routes/user');
 // Express APIs
 const Auth = require('./routes/auth')
 const Product = require('./routes/product')
+const Order = require('./routes/order')
+
 
 
 mongoose.set('strictQuery', true);
@@ -40,6 +42,8 @@ app.use(cors({
 
 app.use('/auth', Auth)
 app.use('/products', Product)
+app.use('/order', Order)
+
 
 
 app.listen(process.env.PORT,()=>{

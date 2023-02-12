@@ -8,6 +8,7 @@ import {
   HttpErrorResponse,
 } from '@angular/common/http';
 import { Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 
 @Injectable({
   providedIn: 'root',
@@ -19,7 +20,7 @@ export class AuthService {
   currentUser :any;
   username : String | undefined ;
 
-  constructor(private http: HttpClient, public router: Router) {}
+  constructor(private http: HttpClient, public router: Router,public toast : ToastrService) {}
 
   // Sign-up
   signUp(user: User): Observable<any> {
@@ -31,15 +32,29 @@ export class AuthService {
   signIn(user: User) {
     return this.http
       .post<any>(`${this.endpoint}/signin`, user)
-      .subscribe((res: any) => {
+      .subscribe((res:any) => {
+         if(res.error==="Email is incorrect"){
+          this.toast.error("Email not found")
+         }
+        else{ 
         localStorage.setItem('access_token', res.token);
         this.getUserProfile(res._id).subscribe((res) => {
           this.currentUser = res.msg;
           this.username =res.msg.username;
-           console.log(this.username)
-          this.router.navigate(['home']);
+          this.router.navigate(['home/',res.msg._id]);
+          this.toast.success("You're logged in your account","",{
+            positionClass: 'toast-bottom-right' 
+          })
         });
-      });
+        }
+      },(error)=>{
+        this.toast.error(error.error)
+      }
+      );
+  }
+
+  getUsers(){
+    return this.http.get<any>(`${this.endpoint}/list`);
   }
 
   getToken() {

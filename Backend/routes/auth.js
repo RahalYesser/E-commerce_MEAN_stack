@@ -4,7 +4,6 @@ const bcrypt = require('bcrypt')
 const router = express.Router()
 const userSchema = require('../models/User')
 const authorize = require('../middlewares/auth')
-const mongoose = require('mongoose')
 const { check, validationResult } = require('express-validator')
 
 // Sign-up
@@ -16,13 +15,13 @@ router.post(
       .isEmpty()
       .isLength({ min: 3 })
       .withMessage('Username must be atleast 3 characters long'),
-    check('email', 'Email is required').not().isEmpty(),
-    check('password', 'Password should be between 5 to 8 characters long')
+      check('email', 'Email is required').not().isEmpty(),
+      check('password', 'Password should be between 3 to 20 characters long')
       .not()
       .isEmpty()
-      .isLength({ min: 5, max: 8 }),
+      .isLength({ min: 3, max: 20 }),
   ],
-  (req, res, next) => {
+  (req, res) => {
     const errors = validationResult(req)
     console.log(req.body)
 
@@ -54,10 +53,52 @@ router.post(
 )
 
 // Sign-in
-router.post('/signin', (req, res, next) => {
+router.post('/signin',async (req, res) => {
  
-   userSchema.findOne({ email: req.body.email })
-    .then((user) => {
+  try{
+    let users=req.body;
+    //console.log(users);
+    const user = await userSchema.findOne({email:users.email});
+    console.log(user)
+
+    if(!user){
+      return res.status(401).send("YOU ARE NOT REGISTRED");
+     }
+
+    const isPasswordCorrect = await bcrypt.compare(users.password, user.password);
+    console.log(isPasswordCorrect);
+
+
+    if(!isPasswordCorrect){
+       return res.status(401).send("Password is incorrect");
+    }
+
+    let jwtToken = jwt.sign(
+      {
+        email: user.email,
+        userId: user._id,
+      },
+      'longer-secret-is-better',
+      {
+        expiresIn: '1h', 
+      },
+    )
+
+    console.log(jwtToken)
+
+    return res.status(200).json({
+      token: jwtToken,
+      expiresIn: 3600,
+      _id: user._id,
+    })
+
+  }
+  catch (error) {
+    return res.status(500).send("Authentification failed")
+  }
+
+/*
+   userSchema.findOne({ email: req.body.email }).then((user) => {
       if (!user) {
         return res.status(401).json({
           message: 'Authentication failed',
@@ -72,39 +113,28 @@ router.post('/signin', (req, res, next) => {
           message: 'Authentication failed',
         })
       }
-      let jwtToken = jwt.sign(
-        {
-          email: getUser.email,
-          userId: getUser._id,
-        },
-        'longer-secret-is-better',
-        {
-          expiresIn: '1h',
-        },
-      )
-      res.status(200).json({
-        token: jwtToken,
-        expiresIn: 3600,
-        _id: getUser._id,
-      })
+      
+     
     })
-    // .catch((err) => {
-    //   return res.status(401).json({
-    //     message: 'Authentication failed',
-    //   })
-    // })
+    .catch((err) => {
+      return res.status(401).json({
+        message: 'Authentication failed',
+      })
+    })*/
 })
 
-// Get Users
-router.route('/').get((req, res, next) => {
-  userSchema.find((error, response)=> {
-    if (error) {
-      return next(error)
-    } else {
-      return res.status(200).json(response)
-    }
-  })
-})
+
+
+//Get All Users
+router.get("/list", async(req, res)=>{
+  try{ 
+      let users = await userSchema.find();
+      res.end(JSON.stringify({status:"success", data:users}));
+  }
+  catch{
+      res.end(JSON.stringify({status:"FAILED", data:"Something went wrong"}));
+  }
+});
 
 
 // Get Single User
@@ -155,26 +185,3 @@ router.route('/delete-user/:id').delete((req, res, next) => {
 
 module.exports = router
 
-
-// const router = require("express").Router();
-
-// //REGISTER
-// router.post("/register", async (req, res) => {
-//     const newUser = new User({
-//       username: req.body.username,
-//       email: req.body.email,
-//       password: CryptoJS.AES.encrypt(
-//         req.body.password,
-//         process.env.PASS_SEC
-//       ).toString(),
-//     });
-  
-//     try {
-//       const savedUser = await newUser.save();
-//       res.status(201).json(savedUser);
-//     } catch (err) {
-//       res.status(500).json(err);
-//     }
-//   });
-  
-// module.exports = router

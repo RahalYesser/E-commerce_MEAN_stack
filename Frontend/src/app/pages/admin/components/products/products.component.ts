@@ -6,7 +6,7 @@ import { ProductService } from 'src/app/services/product.service';
 @Component({
   selector: 'app-products',
   templateUrl:'products.component.html',
-  styles: [
+  styles: ['*{ font-family: poppins;}'
   ]
 })
 export class ProductsComponent implements OnInit {
@@ -30,9 +30,8 @@ export class ProductsComponent implements OnInit {
   public onDeleteProduct(product: any): void {
     console.log(product)
     this.productService.deleteProduct(product).subscribe(
-      (response: void) => {
-        console.log(response);
-        this.toastr.error("Product deleted","")
+      () => {
+        this.toastr.error("Product deleted","Reload page",{timeOut:3000})
       },
     );
   }

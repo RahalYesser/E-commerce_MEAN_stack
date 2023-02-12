@@ -2,16 +2,16 @@
     <div class="flex items-center justify-between p-2">
       <div>
         <button mat-button [matMenuTriggerFor]="sortByMenu">
-          <span class="text-md text-gray-800 mb-3 uppercase font-medium">Sort by {{sort}}</span>
+          <span class="text-md text-primary mb-3 uppercase font-semibold">Sorted by Price {{sort}}</span>
           <mat-icon>expand_more</mat-icon>
         </button>
         <mat-menu #sortByMenu="matMenu">
-          <button (click)="onSortUpdated('Desc')" mat-menu-item>Desc</button>
           <button (click)="onSortUpdated('Asc')" mat-menu-item>Asc</button>
+          <button (click)="onSortUpdated('Desc')" mat-menu-item>Desc</button>
         </mat-menu>
       </div>
       <div class="flex items-center px-2">
-        <div class="px-2">
+        <!-- <div class="px-2">
           <button  mat-button [matMenuTriggerFor]="menu">
             Show {{itemsShowCount}}
             <mat-icon>expand_more</mat-icon>
@@ -21,7 +21,7 @@
             <button (click)="onItemsUpdated(24)" mat-menu-item>24</button>
             <button (click)="onItemsUpdated(36)" mat-menu-item>36</button>
           </mat-menu>
-        </div>
+        </div> -->
         <button (click)="onColumnsUpdated(1)">
           <mat-icon >view_list</mat-icon>
         </button>

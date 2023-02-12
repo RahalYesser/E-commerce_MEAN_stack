@@ -16,6 +16,8 @@ export class NavbarComponent {
 
   logout() {
     this.authService.doLogout();
-    this.toastr.error("logout","You're logged out")
+    this.toastr.error("You're logged out","logout",{
+      positionClass: 'toast-bottom-right' }
+   )
   }
 }

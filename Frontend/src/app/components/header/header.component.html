@@ -1,7 +1,7 @@
 
-<header class=" py-2.5 shadow-sm bg-white sticky w-full top-0 z-50">
+<header *ngIf="this.authService.isLoggedIn" class=" py-2.5 shadow-sm bg-white sticky w-full top-0 z-50">
   <div class="flex px-6 items-center justify-between ">
-      <a href="index.html">
+      <a onclick="window.location.reload">
           <img src="../../../assets/myshop.png" alt="Logo" class="w-42"> 
       </a>
 
@@ -17,20 +17,94 @@
       </div> -->
 
       <div class="flex items-center space-x-4">
+           
           <div>
-            <a href="" class="text-center text-gray-700 hover:text-primary transition relative">
+          <a class="text-center text-gray-700 hover:text-primary transition relative">
               <div class="text-2xl">
-                <button mat-icon-button  >
+                <button mat-icon-button [matMenuTriggerFor]="menu" >
                   <mat-icon
-                    [matBadge]=""
-                    matBadgeColor="warn"
-                    >favorite_border</mat-icon
-                  >
+                     [matBadge]="itemsQuantity"
+                     [matBadgeHidden]="!itemsQuantity"
+                     matBadgeColor="warn"
+                  >shopping_cart</mat-icon>
                 </button>
               </div>
-              <div class="text-xs leading-3">Wishlist</div>
-           </a>
+              <div class="text-xs leading-3">Cart</div>
+              
+          </a>
           </div>
+          <mat-menu #menu="matMenu">
+            <div class="p-5 divide-y divide-solid" width="300">
+              <div class="pb-3 flex justify-between">
+                <span class="mr-10">{{itemsQuantity}} items</span>
+                <span>Price</span>
+              </div>
+              <div *ngIf="cart.items.length" class="py-3">
+                <div
+                  *ngFor="let item of cart.items"
+                  class="flex justify-between font-light mb-2"
+                >
+                  <div class="flex justify-start"><span class="uppercase text-xl">{{ item.name }} <h2 class="text-primary">x {{ item.quantity }}</h2> </span> </div>
+                  <div class="flex justify-end"><span class="font-bold not-italic">{{item.price}} DT</span></div>
+                </div>  
+              </div>
+              <div class="flex justify-between py-3 font-light">
+                Total:
+                <span class="font-bold not-italic">
+                    {{ getTotal(cart.items) }} DT
+                </span>
+              </div>
+              <div class="pt-3 flex justify-between">
+                <button
+                  (click)="onClearCart()"
+                  class="bg-rose-600 text-white rounded-full w-9 h-9"
+                >
+                  <mat-icon>remove_shopping_cart</mat-icon>
+                </button>
+                <button *ngIf="this.user"
+                  routerLink="/cart/{{user._id}}"
+                  class="bg-green-600 text-white rounded-full w-9 h-9"
+                >
+                <mat-icon>shopping_cart_checkout</mat-icon>
+                </button>
+             
+              </div>
+            </div>
+          </mat-menu>
+          <div routerLink="/profile/{{this.user?._id}}" class="text-center text-primary hover:text-gray-700 transition relative">
+            <div class="text-2xl">
+              <button mat-icon-button  >
+                <mat-icon
+                >account_circle</mat-icon>
+              </button>
+            </div>
+            <div class="text-primary font-semibold text-sm leading-3">
+              {{this.user?.username}}
+            </div>
+          </div>
+         
+      </div>
+  </div>
+</header>
+
+<header *ngIf="!this.authService.isLoggedIn" class=" py-2.5 shadow-sm bg-white sticky w-full top-0 z-50">
+  <div class="flex px-6 items-center justify-between ">
+      <button onClick="window.location.reload()">
+          <img src="../../../assets/myshop.png" alt="Logo" class="w-42"> 
+      </button>
+
+      <!-- <div class="w-full max-w-xl relative flex">
+        <span class="absolute left-4 top-2 text-lg text-primary">
+          <mat-icon>search</mat-icon>
+        </span>
+        <input type="text" name="search" id="search" 
+            class="w-full h-10 border border-primary border-r-0 pl-12 py-3 pr-3 rounded-l-md focus:outline-none"
+            placeholder="search">
+        <button
+            class="bg-primary text-white font-bold border border-primary  px-8 rounded-r-md hover:bg-transparent hover:text-primary  transition">Search</button>
+      </div> -->
+
+      <div class="flex items-center space-x-4">
           <div>
           <a class="text-center text-gray-700 hover:text-primary transition relative">
               <div class="text-2xl">
@@ -75,27 +149,27 @@
                 >
                   <mat-icon>remove_shopping_cart</mat-icon>
                 </button>
-                <button
+                
+              <button 
                   routerLink="/cart"
                   class="bg-green-600 text-white rounded-full w-9 h-9"
                 >
-                  <mat-icon>shopping_cart_checkout</mat-icon>
-                </button>
+                <mat-icon>shopping_cart_checkout</mat-icon>
+              </button> 
               </div>
             </div>
           </mat-menu>
-          <a href="home" class="text-center text-gray-700 hover:text-primary transition relative">
-              <div class="text-2xl">
-                <button mat-icon-button  >
-                  <mat-icon
-                  >account_circle</mat-icon>
-                </button>
-              </div>
-              <div *ngIf="this.authService.isLoggedIn" class="text-xs leading-3">
-                {{this.authService.username}}
-              </div>
-              <div *ngIf="!this.authService.isLoggedIn" class="text-xs leading-3">Account</div>
-          </a>
+         
+         <div routerLink="/login" class="text-center text-gray-700 hover:text-primary transition relative">
+          <div class="text-2xl">
+            <button mat-icon-button  >
+              <mat-icon
+              >account_circle</mat-icon>
+            </button>
+          </div>
+          <div class="text-xs leading-3">Account</div>
+        </div>
       </div>
   </div>
 </header>
+

@@ -1,0 +1,106 @@
+
+<div>
+    <p class="text-lg font-medium capitalize pb-6">
+        <span> My orders history </span> <span class="text-primary rounded-full text-2xl px-3 border-2 border-primary">{{ordersLength}}</span>
+    </p>
+
+    <div *ngFor="let order of orders;" >
+    <div class="m-2 p-3 border-2 border-primary rounded-lg " *ngIf="order" >
+    
+        <button class="text-gray-800 font-bold rounded-full p-2 border-2 border-primary"> 
+          
+        </button>
+       
+        <div class="grid grid-cols-3 px-6 gap-2">
+         <div class="flex items-center rounded h-10">
+            <p class="text-sm pr-1">First name : </p>
+            <p class="text-sm font-medium uppercase">{{order.fname}}</p>
+         </div>
+         <div class="flex items-center rounded h-10">
+            <p class="text-sm pr-1">Last name : </p>
+            <p class="text-sm font-medium uppercase">{{order.lname}}</p>
+         </div>
+         
+          <div class="flex items-center rounded h-10">
+             <p class="text-sm pr-1">Phone : </p>
+             <p class="text-sm font-medium uppercase">{{order.phone}}</p>
+          </div>
+          
+     
+        </div>
+        <div class="grid grid-cols-3 px-6 gap-2">
+        
+            <div class="flex items-center  rounded h-10">
+                <p class="text-sm pr-1">Email :</p>
+                <p class="text-sm font-medium lowercase">{{order.email}}</p>
+              </div>
+              <div class="flex items-center rounded h-10">
+                <p class="text-sm pr-1">ZIPCODE : </p>
+                <p class="text-sm font-medium uppercase">{{order.adress.zipcode}}</p>
+             </div>
+            <div class="flex items-center rounded h-10">
+                <p class="text-sm pr-1">Street : </p>
+                <p class="text-sm font-medium uppercase">{{order.adress.street}}</p>
+             </div>
+             
+        
+        </div>
+
+       <div class="grid grid-cols-3 px-6 gap-2 mb-4">
+        <div class="flex items-center rounded h-10">
+           <p class="text-sm pr-1">City : </p>
+           <p class="text-sm font-medium uppercase">{{order.adress.city}}</p>
+        </div>
+        <div class="flex items-center rounded h-10">
+            <p class="text-sm pr-1">Country : </p>
+            <p class="text-sm font-medium uppercase">{{order.adress.country}}</p>
+         </div>
+         
+         
+     
+        </div>
+      
+       <div class="grid grid-cols-2 px-3 gap-2 mb-4">
+        
+        <div *ngFor="let product of order.products">
+            <div class='flex max-w-sm w-full bg-white shadow-md rounded-lg overflow-hidden mx-auto'>
+                <div class="max-w-lg  w-full bg-gray-100 p-3 rounded-md">
+                    <div class="flex">
+                        <div class="w-full content-between">
+                            <div class="text-xl text-gray-900 font-medium uppercase">{{product.name}}</div>
+                            <div class="text-gray-500">N° {{product.id}}</div>
+                        </div>
+                        <div class="">
+                            <img src="{{product.product_image}}" class="rounded-lg h-18 w-20 bg-red-400"/>
+                        </div>
+                    </div>
+                    
+                    <div class="flex mt-3">
+                        <div class="w-full content-between">
+                            <p class="text-gray-900 text-sm">
+                                Quantity : <span class="text-primary font-semibold text-sm">{{product.quantity}}</span></p>
+                        </div>
+                        
+                        <div class="w-full content-between">
+                            <div class="text-primary font-semibold text-lg text-right">{{product.price}} DT</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+       
+        </div>     
+        
+        <div class="grid grid-cols-2 px-3 gap-2">
+            <div class="flex items-center justify-between p-3 h-10 rounded bg-gray-50">
+                <p class="text-sm font-semibold ">Order date :</p>
+                <p class="text-lg ">{{order.createdAt}}</p>
+             </div>
+            <div class="flex items-center justify-between p-3 h-10 rounded bg-gray-50">
+            <p class="text-sm font-semibold ">Total amount to pay :</p>
+            <p class="text-2xl text-primary font-semibold">= {{order.amount}} DT</p>
+             </div>
+        </div>
+    </div>
+ </div>

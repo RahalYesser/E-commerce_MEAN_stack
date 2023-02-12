@@ -1,5 +1,5 @@
 <!-- Index Post -->
-<app-sidebar></app-sidebar>
+<app-sidebar [select]="2"></app-sidebar>
 <div class="pl-10 sm:ml-64 mr-10">
     <div class="mb-4 pt-10">
       <h1 class="font-serif text-3xl font-bold underline decoration-gray-400"> Users list</h1>
@@ -19,65 +19,44 @@
                 <th
                   class="px-6 py-3 text-xs font-medium leading-4 tracking-wider text-left text-gray-500 uppercase border-b border-gray-200 bg-gray-50">
                   Email</th>
-            
+                  <th
+                  class="px-6 py-3 text-xs font-medium leading-4 tracking-wider text-left text-gray-500 uppercase border-b border-gray-200 bg-gray-50">
+                  isAdmin</th>
             </thead>
-  
-            <tbody class="bg-white">
+            <tbody class="even:bg-white odd:bg-gray-50" *ngFor="let user of users">
               <tr>
                 <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200">
-                  <div class="flex items-center">
-                    1
+                  <div class="text-sm leading-5 text-gray-900">
+                    {{user._id}}
                   </div>
   
                 </td>
-  
                 <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200">
-                  <div class="text-sm leading-5 text-gray-900">Create CURD with tailwind v3
+                  <div class="text-sm leading-5 text-gray-900">{{user.username}}
                   </div>
                 </td>
   
                 <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200">
-                  <p>Lorem ipsum dolor sit amet consectetur adipisicing elit...</p>
+                  <div>
+                  {{user.email}}
+                 </div>
                 </td>
+  
+                <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200">
+                  <div *ngIf="!user.isAdmin" class="pl-3">
+                    <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" width="22" height="22" viewBox="0 0 256 256" xml:space="preserve">
 
+                      <defs>
+                      </defs>
+                      <g style="stroke: none; stroke-width: 0; stroke-dasharray: none; stroke-linecap: butt; stroke-linejoin: miter; stroke-miterlimit: 10; fill: none; fill-rule: nonzero; opacity: 1;" transform="translate(1.4065934065934016 1.4065934065934016) scale(2.81 2.81)" >
+                        <path d="M 45 89.979 c -11.523 0 -23.047 -4.387 -31.82 -13.159 c -17.545 -17.546 -17.545 -46.095 0 -63.64 c 17.546 -17.546 46.093 -17.546 63.64 0 c 17.545 17.545 17.545 46.094 0 63.64 C 68.047 85.593 56.523 89.979 45 89.979 z M 45 14.015 c -7.938 0 -15.877 3.021 -21.92 9.065 c -12.087 12.087 -12.087 31.753 0 43.84 c 12.087 12.088 31.754 12.088 43.84 0 c 12.087 -12.087 12.087 -31.753 0 -43.84 C 60.877 17.036 52.938 14.015 45 14.015 z" style="stroke: none; stroke-width: 1; stroke-dasharray: none; stroke-linecap: butt; stroke-linejoin: miter; stroke-miterlimit: 10; fill: rgb(255,64,64); fill-rule: nonzero; opacity: 1;" transform=" matrix(1 0 0 1 0 0) " stroke-linecap="round" />
+                        <rect x="7" y="38" rx="0" ry="0" width="76" height="14" style="stroke: none; stroke-width: 1; stroke-dasharray: none; stroke-linecap: butt; stroke-linejoin: miter; stroke-miterlimit: 10; fill: rgb(255,64,64); fill-rule: nonzero; opacity: 1;" transform=" matrix(0.7071 -0.7071 0.7071 0.7071 -18.6396 44.9969) "/>
+                      </g>
+                      </svg>
+                  </div>
+                </td>
               </tr>
-              <tr>
-                <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200">
-                  <div class="flex items-center">
-                    2
-                  </div>
-  
-                </td>
-  
-                <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200">
-                  <div class="text-sm leading-5 text-gray-900">Create CURD with laravel
-                  </div>
-                </td>
-  
-                <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200">
-                  <p>Lorem ipsum dolor sit amet consectetur adipisicing elit...</p>
-                </td>
-  
-              </tr>
-              <tr>
-                <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200">
-                  <div class="flex items-center">
-                    3
-                  </div>
-  
-                </td>
-  
-                <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200">
-                  <div class="text-sm leading-5 text-gray-900">Create CURD with NodeJS
-                  </div>
-                </td>
-  
-                <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200">
-                  <p>Lorem ipsum dolor sit amet consectetur adipisicing elit...</p>
-                </td>
-  
-               
-              </tr>
+          
             </tbody>
           </table>
         </div>

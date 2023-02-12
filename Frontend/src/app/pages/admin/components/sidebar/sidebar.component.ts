@@ -1,11 +1,12 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 
 @Component({
   selector: 'app-sidebar',
   templateUrl:'sidebar.component.html',
-  styles: [
+  styles: ['*{ font-family: poppins;}'
   ]
 })
 export class SidebarComponent {
 
+  @Input() select: any;
 }

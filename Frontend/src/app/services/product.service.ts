@@ -24,6 +24,15 @@ export class ProductService {
   getProducts():Observable<any> {
     return this.httpClient.get<Product>(`${this.REST_API}/list`);
   }
+
+  getProductsByPrice(sort:any):Observable<any> {
+    return this.httpClient.get<Product>(`${this.REST_API}/list-sort-by-price/${sort}`);
+  }
+
+  getProductsByCategories(category:any,sort:any):Observable<any> {
+    return this.httpClient.get<Product>(`${this.REST_API}/list-sort-by-categories/${category}/${sort}`);
+  }
+
   getOneProduct(id:any):Observable<any> {
     return this.httpClient.get<Product>(`${this.REST_API}/get/${id}`);
   }

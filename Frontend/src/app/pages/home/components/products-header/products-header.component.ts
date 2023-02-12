@@ -8,7 +8,9 @@ import { Component, EventEmitter, Output } from '@angular/core';
 })
 export class ProductsHeaderComponent {
   @Output() columnsCountChange = new EventEmitter<number>();
-  sort = 'Desc';
+  @Output() itemsCountChange = new EventEmitter<number>();
+  @Output() sortChange = new EventEmitter<any>();
+  sort = 'Asc';
   itemsShowCount=12
   constructor() {}
 
@@ -18,8 +20,11 @@ export class ProductsHeaderComponent {
   onItemsUpdated(count: number): void {
     this.itemsShowCount = count;
   }
-  onSortUpdated(newSort: string): void {
+  onSortUpdated(newSort: any): void {
+    this.sortChange.emit(newSort);
     this.sort = newSort;
   }
+
+
 
 }

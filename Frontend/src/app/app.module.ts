@@ -45,6 +45,14 @@ import { ProductsComponent } from './pages/admin/components/products/products.co
 import { AddProductComponent } from './pages/admin/components/add-product/add-product.component';
 import { EditProductComponent } from './pages/admin/components/edit-product/edit-product.component';
 import { UsersListComponent } from './pages/admin/components/users-list/users-list.component';
+import { ProductDetailsComponent } from './pages/product-details/product-details.component';
+import { ProductBoxDetailsComponent } from './pages/product-details/components/product-box-details/product-box-details.component';
+import { DetailsProductComponent } from './pages/admin/components/details-product/details-product.component';
+import { OrderComponent } from './pages/order/order.component';
+import { OrdersComponent } from './pages/admin/components/orders/orders.component';
+import { ProfileComponent } from './pages/profile/profile.component';
+import { ProfileInformationComponent } from './pages/profile/profile-information/profile-information.component';
+import { OrderHistoryComponent } from './pages/profile/order-history/order-history.component';
 
 
 @NgModule({
@@ -70,6 +78,14 @@ import { UsersListComponent } from './pages/admin/components/users-list/users-li
     AddProductComponent,
     EditProductComponent,
     UsersListComponent,
+    ProductDetailsComponent,
+    ProductBoxDetailsComponent,
+    DetailsProductComponent,
+    OrderComponent,
+    OrdersComponent,
+    ProfileComponent,
+    ProfileInformationComponent,
+    OrderHistoryComponent,
   ],
   imports: [
     BrowserModule,

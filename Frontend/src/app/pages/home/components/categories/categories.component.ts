@@ -8,12 +8,11 @@ export class CategoriesComponent {
 
   @Output() showCategory = new EventEmitter<string>();
 
-  categories =[ 'pc','phone','accessories','TV','Gaming']
+  categories =[ 'PC','SMARTPHONE','GAMING','ACCESSORIES','TV','TABLETS']
   
   constructor(){}
 
   onShowCategory(category: string): void {
-    console.log(category);
     this.showCategory.next(category);
     
   }

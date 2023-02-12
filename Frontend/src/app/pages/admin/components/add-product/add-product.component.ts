@@ -6,7 +6,7 @@ import { ProductService } from 'src/app/services/product.service';
 @Component({
   selector: 'app-add-product',
   templateUrl:'add-product.component.html',
-  styles: [
+  styles: ['*{ font-family: poppins;}'
   ]
 })
 export class AddProductComponent {

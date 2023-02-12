@@ -2,13 +2,12 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, NgForm } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
-import { Product } from 'src/app/models/product.model';
 import { ProductService } from 'src/app/services/product.service';
 
 @Component({
   selector: 'app-edit-product',
   templateUrl:'edit-product.component.html',
-  styles: [
+  styles: ['*{ font-family: poppins;}'
   ]
 })
 export class EditProductComponent implements OnInit {
@@ -45,7 +44,6 @@ export class EditProductComponent implements OnInit {
   }
 
   ngOnInit(){
-  
   }
 
   public onUpdateProduct(): void {

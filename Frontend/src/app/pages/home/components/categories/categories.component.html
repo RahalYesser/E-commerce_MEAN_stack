@@ -2,14 +2,16 @@
     <mat-expansion-panel-header>
       <mat-panel-title >
         <mat-icon >menu</mat-icon>
-        
+  
         <div class="font-sans text-center">ALL CATEGORIES</div> 
+
+
       </mat-panel-title>
     </mat-expansion-panel-header>
     <mat-selection-list [multiple]="false">
       <mat-list-option *ngFor="let category of categories" [value]="category" (click)="onShowCategory(category)">
         
-        <button class="font-mono ">{{category}}</button>
+        <button class="font-medium uppercase text-gray-800">{{category}}</button>
       
       </mat-list-option>
       

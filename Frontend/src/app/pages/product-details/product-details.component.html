@@ -1,0 +1,25 @@
+<app-header [cart]="cart" [user]="currentUser" ></app-header>
+
+<app-navbar></app-navbar>
+<!-- breadcrumb -->
+<div class="container pt-4 flex items-center gap-3">
+    <a href="../index.html" class="text-primary text-base">
+        <i class="fa-solid fa-house"></i>
+    </a>
+    <span class="text-sm text-gray-400">
+        <i class="fa-solid fa-chevron-right"></i>
+    </span>
+    <p class="text-gray-600 font-medium">Product</p>
+</div>
+<!-- ./breadcrumb -->
+<div *ngIf="products">
+    <app-product-box-details
+       [product]="products" 
+       (addToCart)="onAddToCart($event)">
+    </app-product-box-details>
+
+</div>
+<!-- ./product-detail -->
+
+<app-footer></app-footer>
+<app-copyright></app-copyright>

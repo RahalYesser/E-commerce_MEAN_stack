@@ -30,8 +30,7 @@ export class CartService {
     }
 
     this.cart.next({ items });
-   
-  
+    
   }
 
   removeFromCart(item: CartItem, update = true): Array<CartItem> {

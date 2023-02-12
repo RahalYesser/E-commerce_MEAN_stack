@@ -39,6 +39,7 @@ export class LandingPageComponent implements OnInit {
   onAddToCart(product:Product):void{
     this.cartService.addToCart({
       product_image: product.img,
+      product_id:product._id,
       name: product.name,
       price: product.price,
       quantity: 1,

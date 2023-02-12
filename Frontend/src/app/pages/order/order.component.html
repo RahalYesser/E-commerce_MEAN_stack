@@ -1,0 +1,148 @@
+<app-header [cart]="cart"></app-header>
+
+<app-navbar></app-navbar>
+
+<div class="container pt-4 flex items-center gap-3">
+    <p class="font-medium">Order details</p>
+</div>
+
+<!-- wrapper -->
+<form [formGroup]="orderForm" id="order-product-form" (ngSubmit)="onConfirmOrder()"
+class="container grid grid-cols-12 items-start pb-16 pt-4 gap-6">
+
+    <div class="col-span-6 border border-gray-200 p-4 rounded">
+        <div class="text-gray-800 text-lg font-bold capitalize mb-4">Order</div>
+        <div  class="space-y-4">
+            <div class="grid grid-cols-2 gap-4">
+                <div>
+                    <label for="first-name" class="text-gray-600">First Name <span
+                            class="text-primary">*</span></label>
+                    <input type="text" name="first-name" id="first-name" 
+                    formControlName="fname" placeholder="First name"
+                    class="block w-full border border-gray-300 px-4 py-3 text-sm rounded placeholder-gray-400"
+                    >
+                </div>
+                <div>
+                    <label for="last-name" class="text-gray-600">Last Name <span
+                            class="text-primary">*</span></label>
+                    <input type="text" name="last-name" id="last-name" placeholder="Last name" formControlName="lname"
+                    class="block w-full border border-gray-300 px-4 py-3 text-sm rounded placeholder-gray-400"
+                    >
+                </div>
+            </div>
+           
+            <div class="grid grid-cols-2 gap-4">
+                <div>
+                    <label for="city" class="text-gray-600">City</label>
+                    <span class="text-primary"> *</span>
+
+                    <input type="text" name="city" id="city" placeholder="City"
+                    formControlName="city"
+                      class="block w-full border border-gray-300 px-4 py-3 text-sm rounded placeholder-gray-400"
+                    >
+                </div>
+                <div>
+                <label for="region" class="text-gray-600">Country/Region</label> 
+                <span class="text-primary"> *</span>
+
+                <input type="text" name="region" id="region" placeholder="Tunisia" 
+                formControlName="country"
+                  class="block w-full border border-gray-300 px-4 py-3 text-sm rounded placeholder-gray-400"
+                >   
+                </div>
+            </div>
+
+            <div class="grid grid-cols-4 gap-4">
+                <div class="col-span-1 gap-4">
+                    <label for="city" class="text-gray-600">ZIP code</label>
+                    <span class="text-primary"> *</span>
+                    <input type="text" name="zipcode" id="zipcode" placeholder="7016,7050..."
+                      formControlName="zipcode"
+                      class="block w-full border border-gray-300 px-4 py-3 text-sm rounded placeholder-gray-400"
+                    >
+                </div>
+                <div class="col-span-3 gap-4">
+                <label for="region" class="text-gray-600">Street</label> 
+                <span class="text-primary"> *</span>
+
+                <input type="text" name="region" id="region" placeholder="Street name"
+                formControlName="street"
+                  class="block w-full border border-gray-300 px-4 py-3 text-sm rounded placeholder-gray-400"
+                >   
+                </div>
+            </div>
+          
+            <div>
+                <label for="phone" class="text-gray-600">Phone number</label>
+                <span class="text-primary"> *</span>
+
+                <input type="text" name="phone" id="phone" placeholder="+216 XX XXX XXX"
+                formControlName="phone"
+                  class="block w-full border border-gray-300 px-4 py-3 text-sm rounded placeholder-gray-400"
+>
+            </div>
+            <div>
+                <label for="email" class="text-gray-600">Email address</label>
+                <input type="email" value="" name="email" id="email" 
+                    formControlName="email" placeholder="Email adress"
+                  class="block w-full border border-gray-300 px-4 py-3 text-sm rounded placeholder-gray-400"
+>
+            </div>
+          
+        </div>
+
+    </div>
+
+    <div class="col-span-6 border border-gray-200 p-4 rounded" >
+        <div class="text-gray-800 text-xl font-bold capitalize mb-4">order summary</div>
+        <table class="min-w-full">
+            <tbody class="even:bg-white odd:bg-gray-50 py-10" *ngFor="let data of cart.items">
+            <tr class="my-6 ">
+                <td>
+                    <img src="{{data.product_image}}" alt="product-image" width="70">
+                </td>
+                <td>
+                    <span class="text-gray-800 font-medium">{{data.name}}> </span>
+                </td>
+                <td class="text-primary">{{data.price}} DT
+                    <span class="text-gray-600">
+                        x {{data.quantity}}
+                    </span> 
+                </td>
+                  
+                <td class="text-primary text-end font-semibold">
+                    <span class="border-b border-gray-200">{{data.quantity*data.price}} DT</span>
+                </td>
+            </tr>  
+            </tbody>     
+        </table>
+
+        
+        <div  class="flex justify-between border-b border-gray-200 mt-1 text-gray-800 font-medium py-3 uppercas">
+            <p>subtotal</p>
+            <p class="text-primary">{{getTotal(cart.items)}} DT</p>
+        </div>
+
+        <div  class="flex justify-between border-b border-gray-200 mt-1 text-gray-800 font-medium py-3 uppercas">
+            <p>shipping</p>
+            <p *ngIf="getTotal(cart.items)>=200" >Free</p>
+            <p *ngIf="getTotal(cart.items)<200" >8 DT</p>
+        </div>
+
+        <div class="flex justify-between text-gray-800 py-3 uppercase">
+            <p class="font-semibold">Total</p>
+            <p class="font-semibold" *ngIf="getTotal(cart.items)>=200">{{getTotal(cart.items)}} DT</p>
+            <p class="font-semibold" *ngIf="getTotal(cart.items)<200">{{getTotal(cart.items)+8}} DT</p>
+
+        </div>
+
+        <button type="submit"
+            class="block w-full py-3 px-4 text-center text-white bg-primary border border-primary rounded-md hover:bg-transparent hover:text-primary transition font-medium">Place
+            order</button>
+    </div>
+
+</form>
+<!-- ./wrapper -->
+
+<app-footer></app-footer>
+<app-copyright></app-copyright>

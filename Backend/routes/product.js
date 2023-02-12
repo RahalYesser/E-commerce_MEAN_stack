@@ -1,9 +1,5 @@
-
-
 let express = require("express");
-let bodyparser = require("body-parser");
 let Product = require("../models/Product");
-let fs = require("fs");
 
 let router = express.Router();
 
@@ -21,17 +17,7 @@ router.post("/add", async(req, res)=>{
         product.price = body.price;
         product.stock = body.stock;
         product.img=body.img;
-        // let base64image = body.img;
-        // if(base64image != "")
-        // {
-        //     let randomname = (Math.random() + 1).toString(36).substring(7);
-        //     base64image = base64image.replace(/^data:image\*;base64,/, "");
-        //     product.imagepath = "products/" + randomname + ".png";
-        //     fs.writeFile("assets/" + product.imagepath, base64image, 'base64', function(err){
-        //         if(err)
-        //             console.log("Error while saving image " + err);
-        //     });
-        // }
+
         product.save().then(result=>{
             res.end(JSON.stringify({status:"success", data:result}));
         }, err=>{
@@ -46,11 +32,43 @@ router.post("/add", async(req, res)=>{
 
 //Get All Products
 router.get("/list", async(req, res)=>{
-    try{
-        
+    try{ 
         let products = await Product.find();
         res.end(JSON.stringify({status:"success", data:products}));
+    }
+    catch{
+        res.end(JSON.stringify({status:"FAILED", data:"Something went wrong"}));
+    }
+});
 
+//Get Products sort by price
+router.get("/list-sort-by-price/:sort", async(req,res)=>{
+    try{ 
+        let products = await Product.find().sort({price:req.params.sort});
+
+        console.log(products)
+        res.end(JSON.stringify({status:"success", data:products}));
+    }
+    catch{
+        res.end(JSON.stringify({status:"FAILED", data:"Something went wrong"}));
+    }
+});
+
+//Get Products sort by categories
+router.get("/list-sort-by-categories/:category/:sort", async(req,res)=>{
+    try{ 
+        let category = req.params.category
+        let sort = req.params.sort
+        let filteredProduct=[]
+        let products = await Product.find().sort({price:sort})
+
+        for(let product of products){
+            if(product.categories===category){
+                filteredProduct.push(product)
+            }
+        }
+    
+        res.end(JSON.stringify({status:"success", data:filteredProduct}));
     }
     catch{
         res.end(JSON.stringify({status:"FAILED", data:"Something went wrong"}));
@@ -60,7 +78,6 @@ router.get("/list", async(req, res)=>{
 // Get Product By ID
 router.get("/get/:id", async(req, res)=>{
     try{
-        let body = req.body;
         let product = await Product.findById(req.params.id);
         res.end(JSON.stringify({status:"success", data:product}));
     }
@@ -93,7 +110,6 @@ router.put("/update/:id",async(req,res)=>{
 // Delete Product
 router.delete("/delete/:id", async(req, res)=>{
     try{
-        let body=req.params;
         await Product.findByIdAndDelete(req.params.id);
         res.end(JSON.stringify({status:"success",data:req.params}));
     }
@@ -102,46 +118,9 @@ router.delete("/delete/:id", async(req, res)=>{
     }
 });
 
-router.post("/savevariety", async(req, res)=>{
-    try{
-        let body = req.body;
-        let product = new Product();
-        product = await Product.findById(body.id);
-        product.varieties.push(body.variety);
-        product.save().then(result=>{
-            res.send(JSON.stringify({status:"success", data:result}));
-        }, err=>{
-            res.send(JSON.stringify({status:"FAILED", data:err}));
-        });
-    }
-    catch{
-        res.end(JSON.stringify({status:"FAILED", data:"Something went wrong"}));        
-    }
-});
-router.post("/deletevariety", async(req, res)=>{
-    try{
-        let body = req.body;
-        let product = new Product();
-        product = await Product.findById(body.id);
-        let varieties = [];
-        for(let i = 0; i < product.varieties.length; i++)
-        {
-            if(product.varieties[i].color != body.variety.color || product.varieties[i].size != body.variety.size)
-            {
-                varieties.push(product.varieties[i]);
-            }
-        }
-        product.varieties = varieties;
-        product.save().then(result=>{
-            res.send(JSON.stringify({status:"success", data:result}));
-        }, err=>{
-            res.send(JSON.stringify({status:"FAILED", data:err}));
-        });
-    }
-    catch{
-        res.end(JSON.stringify({status:"FAILED", data:"Something went wrong"}));        
-    }
-});
+
+
+
 
 module.exports = router;
 

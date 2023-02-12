@@ -1,0 +1,53 @@
+<!-- info -->
+<div>
+    <p class="text-lg font-medium capitalize mb-4">
+        Profile information
+    </p>
+    <div class="space-y-4">
+        <div class="grid grid-cols-3 gap-4">
+            <div>
+                <label for="first">First name</label>
+                <input type="text" name="first" id="first" value="{{user?.username}}"
+                class="block w-full border border-gray-300 px-4 py-3 text-gray-800 text-lg rounded focus:ring-0 focus:border-primary placeholder-gray-400"
+                >
+            </div>
+            <div>
+                <label for="last">Last name</label>
+                <input type="text" name="last" id="last" class="input-box"
+                class="block w-full border border-gray-300 px-4 py-3 text-gray-800 text-lg rounded focus:ring-0 focus:border-primary placeholder-gray-400"
+                >
+            </div>
+            <div>
+                <label for="gender">Gender</label>
+                <select name="gender" id="gender" class="input-box"
+                class="block w-full border border-gray-300 px-4 py-3 text-gray-800 text-lg rounded focus:ring-0 focus:border-primary placeholder-gray-400"
+                >
+                    <option value="male">Male</option>
+                    <option value="female">Female</option>
+                </select>
+            </div>
+        </div>
+        
+        <div class="grid grid-cols-2 gap-4">
+            <div>
+                <label for="email">Email Address</label>
+                <input type="email" name="email" id="email" value="{{user?.email}}"
+                class="block w-full border border-gray-300 px-4 py-3 text-gray-800 text-lg rounded focus:ring-0 focus:border-primary placeholder-gray-400"
+                >
+            </div>
+            <div>
+                <label for="phone">Phone number</label>
+                <input type="text" name="phone" id="phone" class="input-box"
+                class="block w-full border border-gray-300 px-4 py-3 text-gray-800 text-lg rounded focus:ring-0 focus:border-primary placeholder-gray-400"
+                >
+            </div>
+        </div>
+    </div>
+
+    <!-- <div class="mt-4">
+        <button type="submit"
+            class="py-3 px-4 text-center text-white bg-primary border border-primary rounded-md hover:bg-transparent hover:text-primary transition font-medium">save
+            changes</button>
+    </div> -->
+</div>
+<!-- ./info -->
